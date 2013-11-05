@@ -1,8 +1,8 @@
-Nodejs M2X API Client
+Node.js M2X API Client
 ========================
 
 The AT&T M2X API provides all the needed operations to connect your device to AT&T's [M2X](http://m2x.att.com) service. 
-This client provides an easy to use interface for your favorite language, JavaScript.
+This client provides an easy to use interface for [node.js](http://nodejs.org/).
 
 
 Getting Started
@@ -13,3 +13,8 @@ Getting Started
 3. Review the [M2X API Documentation](https://m2x.att.com/developer/documentation/overview).
 
 Please consult the [M2X glossary](https://m2x.att.com/developer/documentation/glossary) if you have questions about any M2X specific terms.
+
+
+Installation
+==========================
+Coming soon...
