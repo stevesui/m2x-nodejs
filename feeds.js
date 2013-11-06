@@ -7,7 +7,7 @@ var Feeds = function(client) {
 };
 
 Feeds.prototype.url = function(format) {
-    var params = arguments.slice(1).map(function(param) {
+    var params = Array.prototype.slice.call(arguments, 1).map(function(param) {
         return encodeURIComponent(param);
     });
 
