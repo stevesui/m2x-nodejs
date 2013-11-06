@@ -1,6 +1,6 @@
 'use strict';
 
-var util = require('util');
+var helpers = require("./helpers");
 
 // Wrapper for AT&T M2X Feed API
 //
@@ -8,14 +8,6 @@ var util = require('util');
 // HTTP Feed API documentation.
 var Feeds = function(client) {
     this.client = client;
-};
-
-Feeds.prototype.url = function(format) {
-    var params = Array.prototype.slice.call(arguments, 1).map(function(param) {
-        return encodeURIComponent(param);
-    });
-
-    return util.format.apply(this, [format].concat(params));
 };
 
 // List all the feeds that belong to the user associated with the
@@ -26,12 +18,12 @@ Feeds.prototype.list = function() {
 
 // Return the details of the supplied feed
 Feeds.prototype.view = function(id) {
-    return this.client.get(this.url("/feeds/%s", id));
+    return this.client.get(helpers.url("/feeds/%s", id));
 };
 
 // Return a list of access log to the supplied feed
 Feeds.prototype.log = function(id) {
-    return this.client.get(this.url("/feeds/%s/log", id));
+    return this.client.get(helpers.url("/feeds/%s/log", id));
 };
 
 // Return the current location of the supplied feed
@@ -39,27 +31,27 @@ Feeds.prototype.log = function(id) {
 // Note that this method can return an empty value (response status
 // of 204) if the feed has no location defined.
 Feeds.prototype.location = function(id) {
-    return this.client.get(this.url("/feeds/%s/location", id));
+    return this.client.get(helpers.url("/feeds/%s/location", id));
 };
 
 // Update the current location of the feed
 Feeds.prototype.updateLocation = function(id, params) {
-    return this.client.put(this.url("/feeds/%s/location", id), null, params);
+    return this.client.put(helpers.url("/feeds/%s/location", id), null, params);
 };
 
 // Return a list of the associated streams for the supplied feed
 Feeds.prototype.streams = function(id) {
-    return this.client.get(this.url("/feeds/%s/streams", id));
+    return this.client.get(helpers.url("/feeds/%s/streams", id));
 };
 
 // Return the details of the supplied stream
 Feeds.prototype.stream = function(id, name) {
-    return this.client.get(this.url("/feeds/%s/streams/%s", id, name));
+    return this.client.get(helpers.url("/feeds/%s/streams/%s", id, name));
 };
 
 // Return a list with the latest values from a stream
 Feeds.prototype.streamValues = function(id, name) {
-    return this.client.get(this.url("/feeds/%s/streams/%s/values", id, name));
+    return this.client.get(helpers.url("/feeds/%s/streams/%s/values", id, name));
 };
 
 // Update stream's properties
@@ -68,12 +60,12 @@ Feeds.prototype.streamValues = function(id, name) {
 // https://m2x.att.com/developer/documentation/feed#Create-Update-Data-Stream
 // for details.
 Feeds.prototype.updateStream = function(id, name, params) {
-    return this.client.put(this.url("/feeds/%s/streams/%s", id, name), null, params);
+    return this.client.put(helpers.url("/feeds/%s/streams/%s", id, name), null, params);
 };
 
 // Delete the stream (and all its values) from the feed
 Feeds.prototype.deleteStream = function(id, name) {
-    return this.client.del(this.url("/feeds/%s/streams/%s", id, name));
+    return this.client.del(helpers.url("/feeds/%s/streams/%s", id, name));
 };
 
 // Returns a list of API keys associated with the feed

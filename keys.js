@@ -1,5 +1,7 @@
 'use strict';
 
+var helpers = require("./helpers");
+
 // Wrapper for AT&T M2X Keys API
 //
 // See https://m2x.att.com/developer/documentation/keys for AT&T M2X
@@ -16,12 +18,12 @@ Keys.prototype.list = function() {
 
 // Return the details of the API Key supplied
 Keys.prototype.view = function(key) {
-    return this.client.get(this.url("/keys/%s", key));
+    return this.client.get(helpers.url("/keys/%s", key));
 };
 
 // Delete the supplied API Key
 Keys.prototype.del = function(key) {
-    return this.client.del(this.url("/keys/%s", key));
+    return this.client.del(helpers.url("/keys/%s", key));
 };
 
 // Create a new API Key
@@ -42,7 +44,7 @@ Keys.prototype.create = function(params) {
 // has the same validations. Note that the Key token cannot be
 // updated through this method.
 Keys.prototype.update = function(key, params) {
-    return this.client.put(this.url("/keys/%s", key), null, params, {
+    return this.client.put(helpers.url("/keys/%s", key), null, params, {
         "Content-Type": "application/json"
     });
 };
@@ -53,7 +55,7 @@ Keys.prototype.update = function(key, params) {
 // authentication then you would need to change your scripts to
 // start using the new key token for all subsequent requests.
 Keys.prototype.regenerate = function(key) {
-    return this.client.post(this.url("/keys/%s/regenerate", key), null, {});
+    return this.client.post(helpers.url("/keys/%s/regenerate", key), null, {});
 };
 
 module.exports = Keys;

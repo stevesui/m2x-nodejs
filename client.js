@@ -1,22 +1,10 @@
 'use strict';
 
-var request = require('request');
+var request = require("request");
+var helpers = require("./helpers");
 
 var API_BASE = "http://api-m2x.att.com/v1";
 var USER_AGENT = "M2X/0.0.2 (node.js)";
-
-var Utils = {
-    extend: function(target) {
-        var sources = [].slice.call(arguments, 1);
-        sources.forEach(function(source) {
-            var prop;
-            for (prop in source) {
-                target[prop] = source[prop];
-            }
-        });
-        return target;
-    }
-};
 
 var Client = function(apiKey, apiBase) {
     this.apiKey = apiKey;
@@ -39,7 +27,7 @@ var Client = function(apiKey, apiBase) {
 Client.prototype.request = function(verb, path, qs, params, headers) {
     var body;
 
-    headers = Utils.extend(this.defaultHeaders, headers || {});
+    headers = helpers.extend(this.defaultHeaders, headers || {});
 
     if (! headers["Content-Type"]) {
         headers["Content-Type"] = "application/x-www-form-urlencoded";
