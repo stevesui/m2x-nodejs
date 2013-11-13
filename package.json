@@ -1,0 +1,18 @@
+{ "author": "Gabriel García",
+  "name": "m2x",
+  "description": "AT&T M2X API client for node.js",
+  "version": "0.1",
+  "keywords": ["at&t", "m2x"],
+  "homepage": "http://m2x.att.com",
+  "license": "MIT",
+  "main": "./lib/m2x",
+
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/attm2x/m2x-nodejs.git"
+  },
+
+  "dependencies": {
+      "request": ">=2.27.1"
+  }
+}
