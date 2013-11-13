@@ -13,8 +13,8 @@ var M2X = function(apiKey, apiBase) {
     this.feeds = new Feeds(this.client);
 };
 
-M2X.prototype.status = function() {
-    return this.client.get("/status");
+M2X.prototype.status = function(cb) {
+    return this.client.get("/status", cb);
 };
 
 module.exports = M2X;

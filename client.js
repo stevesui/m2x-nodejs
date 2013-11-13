@@ -1,6 +1,7 @@
 'use strict';
 
 var request = require("request");
+var querystring = require("querystring");
 var helpers = require("./helpers");
 
 var API_BASE = "http://api-m2x.att.com/v1";
@@ -18,28 +19,34 @@ var Client = function(apiKey, apiBase) {
     // Define request methods by verb
     ['get', 'post', 'put', 'del', 'head', 'options', 'patch'].
         forEach(function(verb) {
-            this[verb] = function(path, qs, params, headers) {
-                this.request(verb, path, qs, params, headers);
+            this[verb] = function(path, options, cb) {
+                this.request(verb, path, options, cb);
             };
         }.bind(this));
 };
 
-Client.prototype.request = function(verb, path, qs, params, headers) {
-    var body;
+Client.prototype.request = function(verb, path, options, cb) {
+    var body, headers;
 
-    headers = helpers.extend(this.defaultHeaders, headers || {});
+    if (typeof options === "function") {
+        // callback was sent in place of options
+        cb = options;
+        options = {};
+    }
+
+    headers = helpers.extend(this.defaultHeaders, options.headers || {});
 
     if (! headers["Content-Type"]) {
         headers["Content-Type"] = "application/x-www-form-urlencoded";
     }
 
-    if (params) {
+    if (options.params) {
         switch (headers["Content-Type"]) {
         case "application/json":
-            body = JSON.stringify(params);
+            body = JSON.stringify(options.params);
             break;
         case "application/x-www-form-urlencoded":
-            body = querystring.stringify(params);
+            body = querystring.stringify(options.params);
             break;
         default:
             throw "Unrecognized Content-Type `" + headers["Content-Type"] + "`";
@@ -48,14 +55,14 @@ Client.prototype.request = function(verb, path, qs, params, headers) {
 
     request({
         url: this.apiBase + path,
-        qs: qs,
+        qs: options.qs,
         method: verb,
         headers: headers,
         body: body
     }, function(error, response, body) {
-        console.log(error);
-        console.log(response);
-        console.log(body);
+        var data = JSON.parse(body);
+        // TODO: make sure there are no problems parsing JSON?
+        cb.call(this, data, error, response);
     });
 };
 

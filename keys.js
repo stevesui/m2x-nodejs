@@ -12,18 +12,18 @@ var Keys = function(client) {
 
 // List all the Master API Keys that belongs to the user associated
 // with the AT&T M2X API key supplied when initializing M2X
-Keys.prototype.list = function() {
-    return this.client.get("/keys");
+Keys.prototype.list = function(cb) {
+    return this.client.get("/keys", cb);
 };
 
 // Return the details of the API Key supplied
-Keys.prototype.view = function(key) {
-    return this.client.get(helpers.url("/keys/%s", key));
+Keys.prototype.view = function(key, cb) {
+    return this.client.get(helpers.url("/keys/%s", key), cb);
 };
 
 // Delete the supplied API Key
-Keys.prototype.del = function(key) {
-    return this.client.del(helpers.url("/keys/%s", key));
+Keys.prototype.del = function(key, cb) {
+    return this.client.del(helpers.url("/keys/%s", key), cb);
 };
 
 // Create a new API Key
@@ -32,10 +32,11 @@ Keys.prototype.del = function(key) {
 // Master API Key or a Feed/Stream API Key. See
 // https://m2x.att.com/developer/documentation/keys#Create-Key for
 // details on the parameters accepted by this method.
-Keys.prototype.create = function(params) {
-    return this.client.post("/keys", null, params, {
-        "Content-Type": "application/json"
-    });
+Keys.prototype.create = function(params, cb) {
+    return this.client.post("/keys", {
+        headers: { "Content-Type": "application/json" },
+        params: params
+    }, cb);
 };
 
 // Update API Key properties
@@ -43,10 +44,11 @@ Keys.prototype.create = function(params) {
 // This method accepts the same parameters as create API Key and
 // has the same validations. Note that the Key token cannot be
 // updated through this method.
-Keys.prototype.update = function(key, params) {
-    return this.client.put(helpers.url("/keys/%s", key), null, params, {
-        "Content-Type": "application/json"
-    });
+Keys.prototype.update = function(key, params, cb) {
+    return this.client.put(helpers.url("/keys/%s", key), {
+        headers: { "Content-Type": "application/json" },
+        params: params
+    }, cb);
 };
 
 // Regenerate an API Key token
@@ -54,8 +56,8 @@ Keys.prototype.update = function(key, params) {
 // Note that if you regenerate the key that you're using for
 // authentication then you would need to change your scripts to
 // start using the new key token for all subsequent requests.
-Keys.prototype.regenerate = function(key) {
-    return this.client.post(helpers.url("/keys/%s/regenerate", key), null, {});
+Keys.prototype.regenerate = function(key, cb) {
+    return this.client.post(helpers.url("/keys/%s/regenerate", key), cb);
 };
 
 module.exports = Keys;
