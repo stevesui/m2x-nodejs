@@ -33,7 +33,7 @@ In order to be able to use this client you will need an AT&T M2X API key and a D
     // for instructions
     //
     
-    var M2X = require("../lib/m2x");
+    var M2X = require("m2x");
     var exec = require("child_process").exec;
     
     var API_KEY = "<YOUR-FEED-API-KEY>";

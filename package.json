@@ -1,6 +1,6 @@
 {
   "name": "m2x",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "AT&T M2X API client for node.js",
   "main": "./lib/m2x",
   "scripts": {
