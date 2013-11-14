@@ -26,6 +26,8 @@ Please consult the [M2X glossary](https://m2x.att.com/developer/documentation/gl
 
 In order to be able to use this client you will need an AT&T M2X API key and a Data Source ID. If you don't have an API key, create an account and, once registered and with your account activated, create a new Data Source Blueprint, and copy the Feed ID and API Key values. The following script will send your CPU load average to three different streams named load_1m, load_5m and load_15. Check that there's no need to create a stream in order to write values into it:
 
+    #!/usr/bin/env node
+
     //
     // See https://github.com/attm2x/m2x-nodejs/blob/master/README.md#example-usage
     // for instructions
