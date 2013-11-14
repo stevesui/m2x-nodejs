@@ -50,9 +50,13 @@ UptimeDataSource.prototype.update = function() {
         };
 
         this.m2xClient.feeds.postMultiple(FEED, values, function(data, error, res) {
-            if (res.statusCode !== 204) {
+            if (error || res.statusCode !== 204) {
                 // abort if something went wrong
                 clearInterval(this.updateInterval);
+
+                if (error) {
+                    console.log(error);
+                }
             }
         }.bind(this));
     });
