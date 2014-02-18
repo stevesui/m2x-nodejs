@@ -262,7 +262,7 @@ UptimeDataSource.prototype.update = function() {
 var instance = new UptimeDataSource();
 ```
 
-You can find the script in [`examples/m2x-uptime.js`](examples/m2x-uptime.js).
+You can find the script in [`examples/uptime.js`](examples/uptime.js), and some other examples in the same directory.
 
 
 ## License ##
