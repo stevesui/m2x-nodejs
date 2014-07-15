@@ -473,7 +473,7 @@ You can find the script in [`examples/uptime.js`](examples/uptime.js), and some 
 
 ## License ##
 
-This gem is delivered under the MIT license. See [LICENSE](LICENSE) for the terms.
+This library is provided under the MIT license. See [LICENSE](LICENSE) for applicable terms.
 
 
 ## Acknowledgements ##
