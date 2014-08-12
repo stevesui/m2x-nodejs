@@ -329,13 +329,11 @@ This is the full list of methods the `feeds` object provides:
   {
       "stream-name-1": [
           { "at": <Time in ISO8601>, "value": x },
-          { "value": y }
+          { "at": <Time in ISO8601>, "value": y }
       ],
       "stream-name-2": [ ... ]
   }
   ```
-
-  If the `at` attribute is missing then the current time of the server, in UTC, will be used.
 
 * m2x.feeds.triggers(id, callback)
 
@@ -450,14 +448,16 @@ UptimeDataSource.prototype.loadAvg = function(cb) {
 UptimeDataSource.prototype.update = function() {
     this.loadAvg(function(load_1m, load_5m, load_15m) {
         // Write the different values into AT&T M2X
+        var at = new Date().toISOString();
+
         var values = {
-            load_1m:  [ { value: load_1m } ],
-            load_5m:  [ { value: load_5m } ],
-            load_15m: [ { value: load_15m } ]
+            load_1m:  [ { value: load_1m, at: at } ],
+            load_5m:  [ { value: load_5m, at: at } ],
+            load_15m: [ { value: load_15m, at: at } ]
         };
 
         this.m2xClient.feeds.postMultiple(FEED, values, function(data, error, res) {
-            if (res.statusCode !== 204) {
+            if (res.statusCode !== 202) {
                 // abort if something went wrong
                 clearInterval(this.updateInterval);
             }

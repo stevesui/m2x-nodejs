@@ -43,14 +43,16 @@ UptimeDataSource.prototype.loadAvg = function(cb) {
 UptimeDataSource.prototype.update = function() {
     this.loadAvg(function(load_1m, load_5m, load_15m) {
         // Write the different values into AT&T M2X
+        var at = new Date().toISOString();
+
         var values = {
-            load_1m:  [ { value: load_1m } ],
-            load_5m:  [ { value: load_5m } ],
-            load_15m: [ { value: load_15m } ]
+            load_1m:  [ { value: load_1m, at: at } ],
+            load_5m:  [ { value: load_5m, at: at } ],
+            load_15m: [ { value: load_15m, at: at } ]
         };
 
         this.m2xClient.feeds.postMultiple(FEED, values, function(data, error, res) {
-            if (error || res.statusCode !== 204) {
+            if (error || res.statusCode !== 202) {
                 // abort if something went wrong
                 clearInterval(this.updateInterval);
 
