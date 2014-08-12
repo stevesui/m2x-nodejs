@@ -1,6 +1,6 @@
 # Node.js M2X API Client #
 
-The AT&T M2X API provides all the needed operations to connect your device to AT&T's [M2X](http://m2x.att.com) service. 
+The AT&T M2X API provides all the needed operations to connect your device to AT&T's [M2X](http://m2x.att.com) service.
 This client provides an easy to use interface for [node.js](http://nodejs.org/).
 
 
@@ -59,10 +59,10 @@ This is the full list of methods the `batches` object provides:
 
   List/search all the data source batches that belong to the user
   associated with the M2X API key supplied when initializing M2X
-  
+
   The list of data source batches can be filtered by using one or
   more of the following optional parameters:
-  
+
   * `q` text to search, matching the name and description.
   * `tags` a comma separated list of tags.
   * `limit` how many results per page.
@@ -78,9 +78,9 @@ This is the full list of methods the `batches` object provides:
 * m2x.batches.create(params, callback)
 
   Create a new data source batch
-  
+
   Accepts the following parameters as members of a hash:
-  
+
   * `name` the name of the new data source.
   * `visibility` either "public" or "private".
   * `description` containing a longer description (optional).
@@ -89,9 +89,9 @@ This is the full list of methods the `batches` object provides:
 * m2x.batches.update(params, callback)
 
   Update an existing data source batch details
-  
+
   Accepts the following parameters as members of a hash:
-  
+
   * `name` the name of the new data source.
   * `visibility` either "public" or "private".
   * `description` containing a longer description (optional).
@@ -100,13 +100,13 @@ This is the full list of methods the `batches` object provides:
 * m2x.batches.datasources(id, params, callback)
 
   List/search all data sources in the batch
-  
+
   See Datasources#search for search parameters description.
 
 * m2x.batches.addDatasource(id, serial, callback)
 
   Add a new data source to an existing batch
-  
+
   Accepts a `serial` parameter, that must be a unique identifier
   within this batch.
 
@@ -128,10 +128,10 @@ This is the full list of methods the `blueprints` object provides:
 
   List/search all the blueprints that belong to the user associated
   with the M2X API key supplied when initializing M2X
-  
+
   The list of blueprints can be filtered by using one or more of the
   following optional parameters:
-  
+
   * `q` text to search, matching the name and description.
   * `tags` a comma separated list of tags.
   * `limit` how many results per page.
@@ -147,9 +147,9 @@ This is the full list of methods the `blueprints` object provides:
 * m2x.blueprints.create(params, callback)
 
   Create a new data source blueprint
-  
+
   Accepts the following parameters as members of a hash:
-  
+
   * `name` the name of the new data source blueprint.
   * `visibility` either "public" or "private".
   * `description` containing a longer description (optional).
@@ -158,9 +158,9 @@ This is the full list of methods the `blueprints` object provides:
 * m2x.blueprints.update(id, params, callback)
 
   Update an existing data source blueprint's information
-  
+
   Accepts the following parameters as members of a hash:
-  
+
   * `name` the name of the new data source blueprint.
   * `visibility` either "public" or "private".
   * `description` containing a longer description (optional).
@@ -184,10 +184,10 @@ This is the full list of methods the `datasources` object provides:
 
   List/search all the datasources that belong to the user associated
   with the M2X API key supplied when initializing M2X
-  
+
   The list of data sources can be filtered by using one or more of the
   following optional parameters:
-  
+
   * `q` text to search, matching the name and description.
   * `tags` a comma separated list of tags.
   * `limit` how many results per page.
@@ -203,9 +203,9 @@ This is the full list of methods the `datasources` object provides:
 * m2x.datasources.create(params, callback)
 
   Create a new data source
-  
+
   Accepts the following parameters as members of a hash:
-  
+
   * `name` the name of the new data source.
   * `visibility` either "public" or "private".
   * `description` containing a longer description (optional).
@@ -214,9 +214,9 @@ This is the full list of methods the `datasources` object provides:
 * m2x.datasources.update(id, params, callback)
 
   Update an existing data source details
- 
+
   Accepts the following parameters as members of a hash:
- 
+
   * `name` the name of the new data source.
   * `visibility` either "public" or "private".
   * `description` containing a longer description (optional).
@@ -284,10 +284,10 @@ This is the full list of methods the `feeds` object provides:
   List values from an existing data stream associated with a
   specific feed, sorted in reverse chronological order (most
   recent values first).
-  
+
   The values can be filtered by using one or more of the following
   optional parameters:
-  
+
   * `start` An ISO 8601 timestamp specifying the start of the date range to be considered.
   * `end` An ISO 8601 timestamp specifying the end of the date range to be considered.
   * `limit` Maximum number of values to return.
@@ -382,19 +382,19 @@ This is the full list of methods the `keys` object provides:
 * m2x.keys.create(params, callback)
 
   Create a new API Key.
- 
+
   Note that, according to the parameters sent, you can create a Master API Key or a Feed/Stream API Key. See https://m2x.att.com/developer/documentation/keys#Create-Key for details on the parameters accepted by this method.
 
 * m2x.keys.update(key, params, callback)
 
   Update API Key properties.
- 
+
   This method accepts the same parameters as create API Key and has the same validations. Note that the Key token cannot be updated through this method.
 
 * m2x.keys.regenerate(key, callback)
 
   Regenerate an API Key token.
- 
+
   Note that if you regenerate the key that you're using for authentication then you would need to change your scripts to start using the new key token for all subsequent requests.
 
 
