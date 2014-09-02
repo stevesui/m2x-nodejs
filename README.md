@@ -298,6 +298,16 @@ This is the full list of methods the `feeds` object provides:
 
   If the stream doesn't exist it will create it. See https://m2x.att.com/developer/documentation/feed#Create-Update-Data-Stream for details.
 
+* m2x.feeds.updateStreamValue(id, name, params, callback)
+
+  Update stream's current value.
+
+  `params` should be an object with the following format:
+
+  ```javascript
+  { "at": "2014-08-01T12:00:00Z", "value": 100 }
+  ```
+
 * m2x.feeds.deleteStream(id, name, callback)
 
   Delete the stream (and all its values) from the feed
