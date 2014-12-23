@@ -5,63 +5,37 @@
 // for instructions
 //
 
-var M2X = require("m2x");
-var exec = require("child_process").exec;
+var config = require("./config"),
+    M2X = require("m2x");
+    UptimeDataSource = require("./uptime_data_source"),
+    source = new UptimeDataSource(),
+    m2xClient = new M2X(config.api_key);
 
-var API_KEY = "<YOUR-FEED-API-KEY>";
-var FEED    = "<YOUR-FEED-ID>";
+// Create the streams if they don't exist already
+source.update(function(data) {
+    m2xClient.devices.updateStream(config.device, "load_1m", { value: data.load_1m });
+    m2xClient.devices.updateStream(config.device, "load_5m", { value: data.load_5m });
+    m2xClient.devices.updateStream(config.device, "load_15m", { value: data.load_15m });
+});
 
-// Match `uptime` load averages output for both Linux and OSX
-var UPTIME_RE = new RegExp("(\\d+\\.\\d+),? (\\d+\\.\\d+),? (\\d+\\.\\d+)$", "m");
-
-
-function UptimeDataSource() {
-    this.m2xClient = new M2X(API_KEY);
-
-    // Create the streams if they don't exist
-    this.loadAvg(function(load_1m, load_5m, load_15m) {
-        this.m2xClient.feeds.updateStream(FEED, "load_1m", { value: load_1m });
-        this.m2xClient.feeds.updateStream(FEED, "load_5m", { value: load_5m });
-        this.m2xClient.feeds.updateStream(FEED, "load_15m", { value: load_15m });
-    });
-
-    this.updateInterval = setInterval(this.update.bind(this), 1000);
-};
-
-UptimeDataSource.prototype.loadAvg = function(cb) {
-    var self = this;
-
-    exec("uptime", function(error, stdout, stderr) {
-        var match = stdout.match(UPTIME_RE);
-
-        if (match) {
-            cb.call(self, match[1], match[2], match[3]);
-        }
-    });
-};
-
-UptimeDataSource.prototype.update = function() {
-    this.loadAvg(function(load_1m, load_5m, load_15m) {
-        // Write the different values into AT&T M2X
-        var at = new Date().toISOString();
-
-        var values = {
-            load_1m:  [ { value: load_1m, at: at } ],
-            load_5m:  [ { value: load_5m, at: at } ],
-            load_15m: [ { value: load_15m, at: at } ]
+// Retrieve values each 1000ms and post them to the device
+source.updateEvery(1000, function(data, stopLoop) {
+    var at = new Date().toISOString(),
+        values = {
+            load_1m:  [ { value: data.load_1m, timestamp: at } ],
+            load_5m:  [ { value: data.load_5m, timestamp: at } ],
+            load_15m: [ { value: data.load_15m, timestamp: at } ]
         };
 
-        this.m2xClient.feeds.postMultiple(FEED, values, function(data, error, res) {
-            if (error || res.statusCode !== 202) {
-                // abort if something went wrong
-                clearInterval(this.updateInterval);
+    // Write the different values into AT&T M2X
+    m2xClient.devices.postMultiple(config.device, values, function(result) {
+        console.log(result);
+        if (result.isError()) {
+            // Stop the update loop if an error occurs.
+            stopLoop();
 
-                if (error) {
-                    console.log(error);
-                }
-            }
-        }.bind(this));
+            console.log(result.error());
+        }
     });
-};
+});
 
-var instance = new UptimeDataSource();
