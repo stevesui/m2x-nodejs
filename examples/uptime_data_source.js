@@ -50,8 +50,9 @@ UptimeDataSource.prototype.update = function(cb) {
 //    want to implement your own solution.
 
 UptimeDataSource.prototype.updateEvery = function(interval, cb) {
-    var self = this,
-        handle, handler;
+    var self = this;
+    var handle;
+    var handler;
 
     handler = function(data) {
         self.update(function(data) {

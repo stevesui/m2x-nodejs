@@ -6,9 +6,9 @@
 // prints the details for each of those devices
 //
 
-var config = require("./config"),
-    M2X = require("m2x"),
-    m2xClient = new M2X(config.api_key);
+var config = require("./config");
+var M2X = require("m2x");
+var m2xClient = new M2X(config.api_key);
 
 m2xClient.devices.list(function(response) {
     if (response.isSuccess()) {

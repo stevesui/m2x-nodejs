@@ -5,9 +5,9 @@
 // M2X service status and prints it to the console
 //
 
-var config = require("./config"),
-    M2X = require("m2x"),
-    m2xClient = new M2X(config.api_key);
+var config = require("./config");
+var M2X = require("m2x");
+var m2xClient = new M2X(config.api_key);
 
 m2xClient.status(function(data) {
     console.log("Current status of M2X service: ");

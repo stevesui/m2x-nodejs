@@ -5,11 +5,11 @@
 // for instructions
 //
 
-var config = require("./config"),
-    M2X = require("m2x");
-    UptimeDataSource = require("./uptime_data_source"),
-    source = new UptimeDataSource(),
-    m2xClient = new M2X(config.api_key);
+var config = require("./config");
+var M2X = require("m2x");
+var UptimeDataSource = require("./uptime_data_source");
+var source = new UptimeDataSource();
+var m2xClient = new M2X(config.api_key);
 
 // Create the streams if they don't exist already
 source.update(function(data) {
@@ -20,12 +20,12 @@ source.update(function(data) {
 
 // Retrieve values each 1000ms and post them to the device
 source.updateEvery(1000, function(data, stopLoop) {
-    var at = new Date().toISOString(),
-        values = {
-            load_1m:  [ { value: data.load_1m, timestamp: at } ],
-            load_5m:  [ { value: data.load_5m, timestamp: at } ],
-            load_15m: [ { value: data.load_15m, timestamp: at } ]
-        };
+    var at = new Date().toISOString();
+    var values = {
+        load_1m:  [ { value: data.load_1m, timestamp: at } ],
+        load_5m:  [ { value: data.load_5m, timestamp: at } ],
+        load_15m: [ { value: data.load_15m, timestamp: at } ]
+    };
 
     // Write the different values into AT&T M2X
     m2xClient.devices.postMultiple(config.device, values, function(result) {
