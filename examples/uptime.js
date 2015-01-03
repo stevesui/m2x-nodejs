@@ -13,9 +13,9 @@ var m2xClient = new M2X(config.api_key);
 
 // Create the streams if they don't exist already
 source.update(function(data) {
-    m2xClient.devices.updateStream(config.device, "load_1m", { value: data.load_1m });
-    m2xClient.devices.updateStream(config.device, "load_5m", { value: data.load_5m });
-    m2xClient.devices.updateStream(config.device, "load_15m", { value: data.load_15m });
+    m2xClient.devices.updateStream(config.device, "load_1m");
+    m2xClient.devices.updateStream(config.device, "load_5m");
+    m2xClient.devices.updateStream(config.device, "load_15m");
 });
 
 // Retrieve values each 1000ms and post them to the device
@@ -38,4 +38,3 @@ source.updateEvery(1000, function(data, stopLoop) {
         }
     });
 });
-
