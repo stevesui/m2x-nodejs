@@ -18,8 +18,8 @@ source.update(function(data) {
     m2xClient.devices.updateStream(config.device, "load_15m");
 });
 
-// Retrieve values each 1000ms and post them to the device
-source.updateEvery(1000, function(data, stopLoop) {
+// Retrieve values each 1100ms and post them to the device
+source.updateEvery(1100, function(data, stopLoop) {
     var at = new Date().toISOString();
     var values = {
         load_1m:  [ { value: data.load_1m, timestamp: at } ],
