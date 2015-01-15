@@ -16,12 +16,13 @@ source.update(function(data) {
     var streams = ["load_1m", "load_5m", "load_15m"];
 
     m2xClient.devices.updateStreams(config.device, streams, function(response) {
-        // Retrieve values each 1100ms and post them to the device
         if (response.isError()) {
             console.log("Cannot create stream:", response);
             return;
         }
-        source.updateEvery(1000, function(data, stopLoop) {
+
+        // Retrieve values each 1100ms and post them to the device
+        source.updateEvery(1100, function(data, stopLoop) {
             var at = new Date().toISOString();
             var values = {
                 load_1m:  [ { value: data.load_1m, timestamp: at } ],
