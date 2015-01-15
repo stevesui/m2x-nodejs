@@ -11,10 +11,10 @@ var UptimeDataSource = require("./uptime_data_source");
 var source = new UptimeDataSource();
 var m2xClient = new M2X(config.api_key);
 
-// Create the streams if they don't exist already
 source.update(function(data) {
     var streams = ["load_1m", "load_5m", "load_15m"];
 
+    // Create the streams if they don't exist already
     m2xClient.devices.updateStreams(config.device, streams, function(response) {
         if (response.isError()) {
             console.log("Cannot create stream:", response);
