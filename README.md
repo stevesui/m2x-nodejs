@@ -15,7 +15,7 @@ Getting Started
 
 ## Installation
 
-m2x-nodejs is available as an npm package. Install the latest version with:
+m2x-nodejs is available as an npm package (https://www.npmjs.com/package/m2x). Install the latest version with:
 
     npm install m2x
 
