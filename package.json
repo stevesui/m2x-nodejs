@@ -1,6 +1,6 @@
 {
   "name": "m2x",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "AT&T M2X API client for node.js",
   "main": "./lib/m2x",
   "scripts": {
@@ -20,5 +20,5 @@
   "author": "Gabriel García",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "f90954cb41b7bf9539e865c1ec802c91a6146722"
+  "gitHead": "1f7a1413835918aa66179c4e3d1bcdc6d53387e6"
 }
