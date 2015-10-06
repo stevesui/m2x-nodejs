@@ -21,9 +21,10 @@ source.update(function(data) {
             return;
         }
 
-        // Retrieve values each 1100ms and post them to the device
-        source.updateEvery(1100, function(data, stopLoop) {
+        // Retrieve values each 5000ms and post them to the device
+        source.updateEvery(5000, function(data, stopLoop) {
             var at = new Date().toISOString();
+            console.log(at);
             var values = {
                 load_1m:  [ { value: data.load_1m, timestamp: at } ],
                 load_5m:  [ { value: data.load_5m, timestamp: at } ],
