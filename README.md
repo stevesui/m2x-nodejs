@@ -67,6 +67,13 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
+- [Jobs](src/jobs.js)
+  ```javascript
+  m2x.jobs.view("<JOB-ID>", function(response) {
+      console.log(response.json);
+  });
+  ```
+
 - [Keys](src/keys.js)
   ```javascript
   m2x.keys.view("<KEY-TOKEN>", function(response) {
