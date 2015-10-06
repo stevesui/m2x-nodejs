@@ -85,6 +85,28 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
+### Time ###
+
+For devices that do not have a Real Time Clock, M2X provides a [set of endpoints that returns the server's time](https://m2x.att.com/developer/documentation/v2/time).
+
+```javascript
+m2x.time(function(response) {
+  console.log(response.json);
+});
+
+m2x.timeSeconds(function(response) {
+  console.log(response.raw);
+});
+
+m2x.timeMillis(function(response) {
+  console.log(response.raw);
+});
+
+m2x.timeIso8601(function(response) {
+  console.log(response.raw);
+});
+```
+
 Refer to the documentation on each class for further usage instructions.
 
 ## Examples ##
