@@ -6,7 +6,7 @@
 //
 
 var config = require("./config");
-var M2X = require("m2x");
+var M2X = require("../");
 var m2xClient = new M2X(config.api_key);
 
 m2xClient.status(function(data) {
