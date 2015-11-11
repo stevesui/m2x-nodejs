@@ -32,7 +32,7 @@ source.update(function(data) {
             };
 
             // Write the different values into AT&T M2X
-            m2xClient.devices.postMultiple(config.device, values, function(result) {
+            m2xClient.devices.postUpdates(config.device, { values: values }, function(result) {
                 console.log(result);
                 if (result.isError()) {
                     // Stop the update loop if an error occurs.
