@@ -43,15 +43,26 @@ m2x.status(function(status) {
 });
 ```
 
-An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `keys`, `devices` and `distributions`.
+An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `collection`, `commands`, `devices`, `distributions`, `jobs` and `keys`.
 
-- [Distributions](src/distributions.js)
+- [Collections](src/collections.js)
   ```javascript
-  m2x.distributions.view("<DISTRIBUTION-ID>", function(response) {
+  m2x.collections.view("<DISTRIBUTION-ID>", function(response) {
       console.log(response.json);
   });
 
-  m2x.distributions.list(function(response) {
+  m2x.collections.list(function(response) {
+      console.log(response.json);
+  });
+  ```
+
+- [Commands](src/commands.js)
+  ```javascript
+  m2x.commands.view("<DISTRIBUTION-ID>", function(response) {
+      console.log(response.json);
+  });
+
+  m2x.commands.list(function(response) {
       console.log(response.json);
   });
   ```
@@ -63,6 +74,17 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
 
   m2x.devices.list(function(response) {
+      console.log(response.json);
+  });
+  ```
+
+- [Distributions](src/distributions.js)
+  ```javascript
+  m2x.distributions.view("<DISTRIBUTION-ID>", function(response) {
+      console.log(response.json);
+  });
+
+  m2x.distributions.list(function(response) {
       console.log(response.json);
   });
   ```
