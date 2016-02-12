@@ -43,7 +43,7 @@ m2x.status(function(status) {
 });
 ```
 
-An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `keys`, `devices`, `charts` and `distributions`.
+An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `keys`, `devices` and `distributions`.
 
 - [Distributions](src/distributions.js)
   ```javascript
