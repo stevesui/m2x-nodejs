@@ -45,7 +45,7 @@ m2x.status(function(status) {
 
 An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `collection`, `commands`, `devices`, `distributions`, `jobs` and `keys`.
 
-- [Collections](src/collections.js)
+- [Collections](lib/collections.js)
   ```javascript
   m2x.collections.view("<DISTRIBUTION-ID>", function(response) {
       console.log(response.json);
@@ -56,7 +56,7 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
-- [Commands](src/commands.js)
+- [Commands](lib/commands.js)
   ```javascript
   m2x.commands.view("<DISTRIBUTION-ID>", function(response) {
       console.log(response.json);
@@ -67,7 +67,7 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
-- [Devices](src/devices.js)
+- [Devices](lib/devices.js)
   ```javascript
   m2x.devices.view("<DEVICE-ID>", function(response) {
       console.log(response.json);
@@ -78,7 +78,7 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
-- [Distributions](src/distributions.js)
+- [Distributions](lib/distributions.js)
   ```javascript
   m2x.distributions.view("<DISTRIBUTION-ID>", function(response) {
       console.log(response.json);
@@ -89,14 +89,14 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
-- [Jobs](src/jobs.js)
+- [Jobs](lib/jobs.js)
   ```javascript
   m2x.jobs.view("<JOB-ID>", function(response) {
       console.log(response.json);
   });
   ```
 
-- [Keys](src/keys.js)
+- [Keys](lib/keys.js)
   ```javascript
   m2x.keys.view("<KEY-TOKEN>", function(response) {
       console.log(response.json);
