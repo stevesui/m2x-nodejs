@@ -16,6 +16,6 @@ m2xClient.devices.list(function(response) {
             console.log(device);
         });
     } else {
-        console.log(response.error());
+        console.log(JSON.stringify(response.error()));
     }
 });

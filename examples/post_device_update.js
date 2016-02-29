@@ -36,6 +36,6 @@ m2x.devices.postUpdate(device_id, params, function(response) {
     if (response.isSuccess()) {
         console.log(response.json);
     } else {
-        console.log(response.error());
+        console.log(JSON.stringify(response.error()));
     }
 });

@@ -31,6 +31,6 @@ m2x.devices.search(params, function(response) {
             }
         }
     } else {
-        console.log(response.error());
+        console.log(JSON.stringify(response.error()));
     }
 });

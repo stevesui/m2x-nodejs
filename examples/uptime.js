@@ -38,7 +38,7 @@ source.update(function(data) {
                     // Stop the update loop if an error occurs.
                     stopLoop();
 
-                    console.log(result.error());
+                    console.log(JSON.stringify(response.error()));
                 }
             });
         });

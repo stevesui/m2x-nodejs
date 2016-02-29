@@ -56,12 +56,12 @@ m2x.devices.create(device_params, function(response) {
             if (response.isSuccess()) {
                 console.log("Stream created. Stream id: ".concat(stream_id));
             } else {
-                console.log(response.error());
+                console.log(JSON.stringify(response.error()));
             }
         });
 
     } else {
-        console.log(response.error());
+        console.log(JSON.stringify(response.error()));
     }
 });
 
