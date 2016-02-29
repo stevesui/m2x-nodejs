@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 
 /*
-
- This example demonstrates how to make a call to the
- Post Device Update (Single Value to Multiple Streams) endpoint
-
- https://m2x.att.com/developer/documentation/v2/device#Post-Device-Update--Single-Values-to-Multiple-Streams-
-
+* 
+* This example demonstrates how to make a call to the
+* Post Device Update (Single Value to Multiple Streams) endpoint
+*
+* API Documentation:
+* https://m2x.att.com/developer/documentation/v2/device#Post-Device-Update--Single-Values-to-Multiple-Streams-
+*
+* Setup:
+* Replace <M2X-API-KEY> with an M2X API Key
+*
 */
 
-var M2X = require("m2x");
-
+var M2X = require("../");
 var m2x_client = new M2X("<M2X-API-Key>");
 
 // Use the Search Devices endpoint to find the correct
@@ -32,7 +35,7 @@ params = {
     }
 };
 
-m2x.devices.postUpdate(device_id, params, function(response) {
+m2x_client.devices.postUpdate(device_id, params, function(response) {
     if (response.isSuccess()) {
         console.log(response.json);
     } else {

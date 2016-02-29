@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 
 /*
-
- This example demonstrates how to create an M2X Device
- and create a stream on the resulting Device
-
- https://m2x.att.com/developer/documentation/v2/device#Create-Device
-
+*
+* This example demonstrates how to create an M2X Device
+* and create a stream on the resulting Device
+*
+* API Documentation:
+* https://m2x.att.com/developer/documentation/v2/device#Create-Device
+*
+* Setup:
+* Replace <M2X-API-KEY> with an M2X API Key
+*
 */
 
-var M2X = require("m2x");
-
+var M2X = require("../");
 var m2x_client = new M2X("<M2X-API-KEY>");
 
 // Device ID of the device that will be created
@@ -39,7 +42,7 @@ device_params = {
     }
 };
 
-m2x.devices.create(device_params, function(response) {
+m2x_client.devices.create(device_params, function(response) {
     if (response.isSuccess()) {
         device_id = response.json.id;
         console.log("Device created. Device id: ".concat(device_id));
@@ -52,7 +55,7 @@ m2x.devices.create(device_params, function(response) {
         };
 
         // Create stream
-        m2x.devices.updateStream(device_id, stream_id, stream_params, function(response) {
+        m2x_client.devices.updateStream(device_id, stream_id, stream_params, function(response) {
             if (response.isSuccess()) {
                 console.log("Stream created. Stream id: ".concat(stream_id));
             } else {

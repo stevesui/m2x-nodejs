@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 
 /*
-
- This example demonstrates use the Search Devices endpoint
- to search your M2X devices
-
- https://m2x.att.com/developer/documentation/v2/device#Search-Devices
-
+*
+* This example demonstrates use the Search Devices endpoint
+* to search your M2X devices
+*
+* API Documentation:
+* https://m2x.att.com/developer/documentation/v2/device#Search-Devices
+*
+* Setup:
+* Replace <M2X-API-KEY> with an M2X API Key
+*
 */
 
-var M2X = require("m2x");
-
+var M2X = require("../");
 var m2x_client = new M2X("<M2X-API-KEY>");
 
 device_serial = "123abc";
@@ -20,7 +23,7 @@ params = {
     serial: device_serial
 };
 
-m2x.devices.search(params, function(response) {
+m2x_client.devices.search(params, function(response) {
     if (response.isSuccess()) {
         devices = response.json.devices;
         for (var device_index in devices) {

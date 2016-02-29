@@ -157,10 +157,27 @@ m2xClient.devices.list(function(response) {
 
 ## Example usage ##
 
-You can find the examples in the [`examples`](examples) directory.
+You can find additional examples in the [`examples`](examples) directory. Instructions for each example can be found within the comments of the example file.
 
-To use them, you should set up your key in [`examples/config.js`](examples/config.js), then execute like: `$ node examples/print-devices.js`.
+All examples require the `m2x-nodejs` library.
 
+If you will be running the examples from within the `examples` directory, you will need to install the library dependencies within the root directory of the `m2x-nodejs` folder:
+
+```
+npm install
+```
+
+Or, if you move the example file(s) out of the `examples` directory you will need to modify the  `m2x-nodejs` require line and install the `m2x-nodejs` library in the root directory where the example file is stored:
+
+Change require line as follows:
+```
+var M2X = require("m2x");
+```
+
+Install `m2x-nodejs` package using npm:
+```
+npm install m2x
+```
 
 ## Versioning
 
