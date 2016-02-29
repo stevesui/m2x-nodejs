@@ -11,7 +11,7 @@
 
 var M2X = require("m2x");
 
-var m2x = new M2X("[M2X-API-KEY]");
+var m2x = new M2X("<M2X-API-KEY>");
 
 // Device ID of the device that will be created
 device_id = "";
