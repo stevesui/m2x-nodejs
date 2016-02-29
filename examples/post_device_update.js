@@ -11,7 +11,7 @@
 
 var M2X = require("m2x");
 
-var m2x = new M2X("<M2X-API-Key>");
+var m2x_client = new M2X("<M2X-API-Key>");
 
 // Use the Search Devices endpoint to find the correct
 // device ID if not known
