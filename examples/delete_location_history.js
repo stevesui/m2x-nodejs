@@ -10,7 +10,6 @@
 * Setup:
 * Replace <M2X-API-KEY> with an M2X API Key
 * Replace <M2X-DEVICE-ID> with a device id
-* Replace YYYY-MM-DD with a date and hh:mm:ss with a time
 */
 
 var M2X = require("../");
@@ -18,23 +17,10 @@ var m2x_client = new M2X("<M2X-API-KEY>");
 
 var device_id = "<M2X-DEVICE-ID>";
 
-function getParams() {
-
-  function getTimestamp(date, time) {
-    var timestamp = [];
-  
-    timestamp.push(date, "T", time, ".000Z");
-
-    return timestamp.join("");
-  }
-  
-  return {
-    "from": getTimestamp("YYYY-MM-DD", "hh:mm:ss"),
-    "end": getTimestamp("YYYY-MM-DD", "hh:mm:ss")
-  };
-}
-
-var params = getParams();
+var params = {
+  "from": "2015-01-01T01:00:00.000Z",
+  "end": "2016-01-01T01:00:00.000Z"
+};
 
 console.log("Deleting location history from: %s end: %s for device: %s", params.from, params.end, device_id);
 
