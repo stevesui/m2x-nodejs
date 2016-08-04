@@ -174,9 +174,15 @@ Change require line as follows:
 var M2X = require("m2x");
 ```
 
-Install `m2x-nodejs` package using npm:
+Install `m2x-nodejs` package using npm in the root directory where you have stored the examples:
 ```
 npm install m2x
+```
+
+Once you've selected an example to run, open the file and add your user specific information such as your `API Key`, `Device ID`, etc., and then run the example with the following command:
+
+```
+node example_filename.js
 ```
 
 ## Versioning
