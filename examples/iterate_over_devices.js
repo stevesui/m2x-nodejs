@@ -14,33 +14,40 @@
 
 var M2X = require("../lib/m2x");
 
-var m2x_client = new M2X("<API-KEY>");
+var m2x_client = new M2X("<M2X-API-KEY>");
 
-m2x_client.devices.list(function(response) {
+var params = {
+    "limit": 5 //Variable to limit the number of devices per page.
+}
+
+m2x_client.devices.list(params, function(response) {
     if (response.isSuccess()) {
 
         var number_of_pages = response.json['pages'];
         var total_devices = response.json['total'];
+        var limit = response.json['limit'];
         console.log("Total Number of Devices: ", total_devices);
-        print_devices(number_of_pages);
+        print_devices(number_of_pages, limit);
 
     } else {
         console.log(JSON.stringify(response.error()));
     }
 });
 
-function print_devices(number_of_pages) {
+function print_devices(number_of_pages, limit) {
     for(var page = 1; page <= number_of_pages; page++) {
         var params = {
-            page: page
+            "page": page,
+            "limit": limit
         };
+
         m2x_client.devices.list(params, function (response) {
             if (response.isSuccess()) {
-                i=1;
+                var i=1;
                 response.json.devices.forEach(function (device) {
-                    console.log("Page",page-1, ", Device ",i++ ," :: ", device.name)
+                    console.log("Page",response.json['current_page'], ", Device ",i++ ," :: ", device.name)
                 });
-                console.log(response.json['total'], "Devices returned on page", page-1)
+                console.log(response.json.devices.length, "Devices returned on page", response.json['current_page']);
             } else {
                 console.log(JSON.stringify(response.error()));
             }
