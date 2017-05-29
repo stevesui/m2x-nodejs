@@ -76,6 +76,18 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   m2x.devices.list(function(response) {
       console.log(response.json);
   });
+
+  m2x.devices.listTriggers("<DEVICE-ID>",function(response) {
+      console.log(response.json);
+  });
+
+  m2x.devices.createTriggers("<DEVICE-ID>","<PARAM>",function(response) {
+      console.log(response.json);
+  });
+
+  m2x.devices.deleteTriggers("<DEVICE-ID>","<TRIGGER-ID>",function(response) {
+      console.log(response.json);
+  });
   ```
 
 - [Distributions](lib/distributions.js)
