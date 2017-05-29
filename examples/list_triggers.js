@@ -5,10 +5,10 @@
 * and then prints the details of each device.
 *
 * API Documentation:
-* https://m2x.att.com/developer/documentation/v2/device#List-Devices
 * 
 * Setup:
 * Replace <M2X-API-KEY> with an M2X API Key
+* Replace <M2X-DEVICE-ID> with an M2X Device Id 
 * 
 */
 
