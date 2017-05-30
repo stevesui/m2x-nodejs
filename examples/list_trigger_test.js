@@ -13,8 +13,7 @@
 */
 
 var M2X = require("../");
-//var m2x_client = new M2X("<M2X-API-KEY>");
-var m2x_client = new M2X("36f265c21169a943f4025a49ca3a1f42");
+var m2x_client = new M2X("<M2X-API-KEY>");
 var device_id = "1328f3bad183c004282fade0b1e59cfd";
 
 m2x_client.devices.listTriggers(device_id,function(response) {
